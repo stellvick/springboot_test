@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  springboot-app:
+    image: openjdk:17-jdk-slim
+    container_name: springboot-app
+    restart: unless-stopped
+    ports:
+      - "8899:8080"
+    volumes:
+      - ./target/my-application.jar:/app.jar
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+      - SERVER_PORT=8080
+    command: java -jar /app.jar
