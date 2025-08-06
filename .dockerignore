@@ -1,0 +1,33 @@
+# Ignorar arquivos desnecessários no build do Docker
+.git
+.gitignore
+README.md
+LICENSE.md
+HELP.md
+docker-compose.yaml
+Dockerfile
+
+# Build artifacts
+build/
+target/
+.gradle/
+
+# IDE files
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+*.tmp
+*.temp
+.tmp/
