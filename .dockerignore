@@ -7,11 +7,15 @@ HELP.md
 docker-compose.yaml
 Dockerfile
 
-# Build artifacts (mas manter gradle wrapper)
+# Build artifacts
 build/
 target/
 .gradle/
-!gradle/wrapper/
+
+# Gradle wrapper (não necessário com imagem gradle)
+gradle/
+gradlew
+gradlew.bat
 
 # IDE files
 .idea/
