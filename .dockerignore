@@ -6,11 +6,13 @@ LICENSE.md
 HELP.md
 docker-compose.yaml
 Dockerfile
+.dockerignore
 
 # Build artifacts
 build/
 target/
 .gradle/
+!gradle/wrapper/
 
 # IDE files
 .idea/
@@ -26,8 +28,3 @@ Thumbs.db
 # Logs
 *.log
 logs/
-
-# Temporary files
-*.tmp
-*.temp
-.tmp/

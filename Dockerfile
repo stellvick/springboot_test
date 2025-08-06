@@ -4,22 +4,11 @@ FROM gradle:8.10-jdk17-alpine AS build
 # Definir diretório de trabalho
 WORKDIR /app
 
-# Copiar wrapper do gradle e arquivos de configuração
-COPY gradle gradle
-COPY gradlew .
-COPY build.gradle settings.gradle ./
+# Copiar todos os arquivos do projeto (exceto os ignorados pelo .dockerignore)
+COPY . .
 
-# Dar permissão de execução ao gradlew
-RUN chmod +x gradlew
-
-# Fazer download das dependências (para cache)
-RUN ./gradlew dependencies --no-daemon || true
-
-# Copiar código fonte
-COPY src src
-
-# Fazer build da aplicação usando o gradlew
-RUN ./gradlew clean build -x test --no-daemon
+# Fazer build da aplicação usando o gradle da imagem
+RUN gradle clean build -x test --no-daemon --stacktrace
 
 # Estágio final - imagem de produção
 FROM openjdk:17-jdk-alpine
