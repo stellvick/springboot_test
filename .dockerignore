@@ -12,11 +12,6 @@ build/
 target/
 .gradle/
 
-# Gradle wrapper (não necessário com imagem gradle)
-gradle/
-gradlew
-gradlew.bat
-
 # IDE files
 .idea/
 .vscode/
