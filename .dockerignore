@@ -7,10 +7,11 @@ HELP.md
 docker-compose.yaml
 Dockerfile
 
-# Build artifacts
+# Build artifacts (mas manter gradle wrapper)
 build/
 target/
 .gradle/
+!gradle/wrapper/
 
 # IDE files
 .idea/
