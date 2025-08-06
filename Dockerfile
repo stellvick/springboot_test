@@ -4,24 +4,20 @@ FROM gradle:8.10-jdk17-alpine AS build
 # Definir diretório de trabalho
 WORKDIR /app
 
-# Copiar arquivos de configuração do Gradle
-COPY build.gradle settings.gradle gradlew ./
-COPY gradle gradle
-
-# Copiar código fonte
-COPY src src
+# Copiar todos os arquivos do projeto
+COPY . .
 
 # Dar permissão de execução ao gradlew
 RUN chmod +x gradlew
 
-# Fazer a build da aplicação
-RUN ./gradlew build -x test --no-daemon
+# Limpar builds anteriores e fazer nova build
+RUN ./gradlew clean build -x test --no-daemon --stacktrace
 
 # Estágio final - imagem de produção
 FROM openjdk:17-jdk-alpine
 
-# Instalar dumb-init para melhor handling de sinais
-RUN apk add --no-cache dumb-init
+# Instalar dumb-init e curl
+RUN apk add --no-cache dumb-init curl
 
 # Criar usuário não-root para segurança
 RUN addgroup -g 1001 -S appgroup && \
