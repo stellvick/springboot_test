@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${title}">Spring Boot Test</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 600px;
+            margin: 2rem;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 1rem;
+            font-size: 2.5rem;
+        }
+        .message {
+            font-size: 1.3rem;
+            color: #555;
+            margin: 2rem 0;
+        }
+        .info {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+        }
+        .timestamp {
+            color: #888;
+            font-size: 0.9rem;
+            margin-top: 2rem;
+        }
+        .endpoints {
+            text-align: left;
+            margin: 2rem 0;
+        }
+        .endpoints h3 {
+            color: #333;
+            margin-bottom: 1rem;
+        }
+        .endpoint {
+            background: #e9ecef;
+            padding: 0.5rem 1rem;
+            margin: 0.5rem 0;
+            border-radius: 5px;
+            font-family: monospace;
+        }
+        .status {
+            display: inline-block;
+            background: #28a745;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: bold;
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 th:text="${title}">Spring Boot Test Page</h1>
+        
+        <div class="status">✅ ONLINE</div>
+        
+        <div class="message" th:text="${message}">Aplicação funcionando!</div>
+        
+        <div class="info">
+            <h3>🔗 Endpoints Disponíveis:</h3>
+            <div class="endpoints">
+                <div class="endpoint">GET / - API Home (JSON)</div>
+                <div class="endpoint">GET /hello - Informações (JSON)</div>
+                <div class="endpoint">GET /hello/{name} - Saudação personalizada (JSON)</div>
+                <div class="endpoint">GET /page - Esta página (HTML)</div>
+                <div class="endpoint">GET /api/info - Informações da API (JSON)</div>
+                <div class="endpoint">GET /actuator/health - Health Check (JSON)</div>
+            </div>
+        </div>
+        
+        <div class="info">
+            <h3>📊 Informações do Sistema:</h3>
+            <p><strong>Java Version:</strong> <span th:text="${@systemProperties['java.version']}">17</span></p>
+            <p><strong>Spring Boot:</strong> 3.5.4</p>
+            <p><strong>Profile:</strong> <span th:text="${@environment.getActiveProfiles().length > 0 ? @environment.getActiveProfiles()[0] : 'default'}">default</span></p>
+        </div>
+        
+        <div class="timestamp">
+            <p>⏰ Último carregamento: <span th:text="${timestamp}">timestamp</span></p>
+        </div>
+    </div>
+</body>
+</html>
