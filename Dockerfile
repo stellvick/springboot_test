@@ -1,5 +1,5 @@
 # Multi-stage build para otimizar o tamanho da imagem
-FROM gradle:8.10-jdk17-alpine AS build
+FROM gradle:8.10-jdk21-alpine AS build
 
 # Definir diretório de trabalho
 WORKDIR /app
@@ -11,7 +11,7 @@ COPY . .
 RUN gradle clean build -x test --no-daemon --stacktrace
 
 # Estágio final - imagem de produção
-FROM openjdk:17-jdk-alpine
+FROM openjdk:21-jdk-alpine
 
 # Instalar dumb-init e curl
 RUN apk add --no-cache dumb-init curl
